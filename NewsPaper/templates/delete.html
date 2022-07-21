@@ -1,0 +1,26 @@
+
+
+{% extends 'flatpages/default.html' %}
+    
+{% block title %}
+Del
+{% endblock title %}
+
+{% block content %}
+
+<h1>Удаление новости</h1>
+
+<form method="POST">
+    {% csrf_token %} 
+    {{ form }}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input onclick="return proverka()"; type="submit" value="Удалить новость">
+</form>
+
+<script>
+    function proverka() {
+        return confirm("Подтвердить")
+    }
+</script>
+
+{% endblock content %}

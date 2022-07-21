@@ -1,0 +1,22 @@
+from myapp.models import *
+User.objects.create(username = 'Petya')
+User.objects.create(username = 'Vasya')
+
+Author.objects.create(author_user = User.objects.get(username = 'Petya'))
+Author.objects.create(author_user = User.objects.get(username = 'Vasya'))
+
+Category.objects.create(category_name = 'Sport')  
+Category.objects.create(category_name = 'News')  
+Category.objects.create(category_name = 'Politic') 
+Category.objects.create(category_name = 'Fresh') 
+
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Vasya')), post_choice = 1, post_title = 'Титул первой статьи', post_text = 'Текст первой статьи') 
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Petya')), post_choice = 1, post_title = 'Титул второй статьи', post_text = 'Текст второй статьи')  
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Petya')), post_choice = 2, post_title = 'Новость дня', post_text = 'Lorem ipsum')
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Vasya')), post_choice = 1, post_title = 'Титул третей статьи', post_text = 'Текст третей статьи'*20) 
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Petya')), post_choice = 2, post_title = 'Титул второй Новости', post_text = 'Текст второй Новости'*20)  
+Post.objects.create(post_author = Author.objects.get(author_user = User.objects.get(username = 'Petya')), post_choice = 2, post_title = 'Новость супер дня', post_text = 'Lorem ipsum'*30)
+
+Post.objects.get(post_title = 'Титул первой статьи').category.add(Category.objects.get(category_name = 'Sport'), Category.objects.get(category_name = 'News'))
+Post.objects.get(post_title = 'Титул второй статьи').category.add(Category.objects.get(category_name = 'Politic'), Category.objects.get(category_name = 'Fresh'))
+Post.objects.get(post_title = 'Новость дня').category.add(Category.objects.get(category_name = 'Sport'), Category.objects.get(category_name = 'Fresh'))

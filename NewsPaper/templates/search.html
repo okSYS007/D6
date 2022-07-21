@@ -1,0 +1,37 @@
+
+{% extends 'flatpages/default.html' %}
+  
+{% block title %}
+Search
+{% endblock title %}
+
+{% block content %}
+<h1>Поиск новостей {{ UserReq}}</h1>
+
+<form method="GET">
+    {{ filter.form }} <!-- Форму от фильтров за нас сделает Django. А вот кнопку, увы, придётся делать самому -->
+    <input type="submit" value="Найти">
+</form>
+
+<h4>Новости: </h4>
+
+{% for post in filter.qs %}
+
+    {{ post.post_title|title }}
+    {{ post.creation_date }}
+    {{ post.post_author }}
+    <br>
+
+{% endfor %}
+
+<br>
+
+<form method="POST">
+{% if showFollow %}
+    {% csrf_token %} 
+    {{ form }}
+    <button>Подписаться на категорию новостей: <b>{{ category }} </b></button>
+{% endif %}
+</form>
+
+{% endblock content %}

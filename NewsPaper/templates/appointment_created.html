@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Здравствуй, {{ appointment.userName }}. Новая статья в твоём любимом разделе! </h2><br>
+    <h1>{{ appointment.title }}</h1>
+    <p> {{ appointment.text|truncatechars:50 }} </p>
+    <a href="http://127.0.0.1:8000{{ appointment.postUrl }}">Ссылка на статью</a>
+</body>
+</html>
